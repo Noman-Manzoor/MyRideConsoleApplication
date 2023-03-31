@@ -1,0 +1,15 @@
+C:\My data\hw1\MyRide\Passenger\bin\Debug\net6.0\Passenger.deps.json
+C:\My data\hw1\MyRide\Passenger\bin\Debug\net6.0\Passenger.dll
+C:\My data\hw1\MyRide\Passenger\bin\Debug\net6.0\Passenger.pdb
+C:\My data\hw1\MyRide\Passenger\bin\Debug\net6.0\Location.dll
+C:\My data\hw1\MyRide\Passenger\bin\Debug\net6.0\Location.pdb
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.csproj.AssemblyReference.cache
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.GeneratedMSBuildEditorConfig.editorconfig
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.AssemblyInfoInputs.cache
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.AssemblyInfo.cs
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.csproj.CoreCompileInputs.cache
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.csproj.CopyComplete
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.dll
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\refint\Passenger.dll
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\Passenger.pdb
+C:\My data\hw1\MyRide\Passenger\obj\Debug\net6.0\ref\Passenger.dll

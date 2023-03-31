@@ -1,0 +1,12 @@
+C:\My data\hw1\MyRide\Location\bin\Debug\net6.0\Location.deps.json
+C:\My data\hw1\MyRide\Location\bin\Debug\net6.0\Location.dll
+C:\My data\hw1\MyRide\Location\bin\Debug\net6.0\Location.pdb
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.csproj.AssemblyReference.cache
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.GeneratedMSBuildEditorConfig.editorconfig
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.AssemblyInfoInputs.cache
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.AssemblyInfo.cs
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.csproj.CoreCompileInputs.cache
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.dll
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\refint\Location.dll
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\Location.pdb
+C:\My data\hw1\MyRide\Location\obj\Debug\net6.0\ref\Location.dll

@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Driver/1.0.0": {
+        "dependencies": {
+          "Location": "1.0.0",
+          "Vehicle": "1.0.0"
+        },
+        "runtime": {
+          "Driver.dll": {}
+        }
+      },
+      "Location/1.0.0": {
+        "runtime": {
+          "Location.dll": {}
+        }
+      },
+      "Vehicle/1.0.0": {
+        "runtime": {
+          "Vehicle.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Driver/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Location/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Vehicle/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
