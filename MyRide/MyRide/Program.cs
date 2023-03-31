@@ -28,6 +28,7 @@ namespace MyRide
                 Console.WriteLine("1. Book a Ride");
                 Console.WriteLine("2. Enter as Driver");
                 Console.WriteLine("3. Enter as Admin");
+                Console.WriteLine("4. Stop Program ");
 
                 Console.WriteLine("Press 1 to 3 to select an option:");
                 option = Convert.ToInt32(Console.ReadLine());
@@ -146,7 +147,7 @@ namespace MyRide
                             Location currentLocation = new Location(x, y);
                             driver.UpdateLocation(currentLocation);
 
-                            int nomi;
+                            int temp;
                             do
                             {
                                 Console.WriteLine("1. Change availability ");
@@ -154,16 +155,16 @@ namespace MyRide
                                 Console.WriteLine("3. Exit as Driver ");
                                 Console.WriteLine("Choose one from above options.");
 
-                                nomi = Convert.ToInt32(Console.ReadLine());
+                                temp = Convert.ToInt32(Console.ReadLine());
 
-                                if (nomi == 1)
+                                if (temp == 1)
                                 {
                                     Console.WriteLine("Are you available? Enter a boolean value (True or False):");
                                     string userInput = Console.ReadLine();
                                     bool myBool = bool.Parse(userInput);
                                     driver.UpdateAvailability(myBool);
                                 }
-                                else if (nomi == 2)
+                                else if (temp == 2)
                                 {
                                     Console.WriteLine("Update your Location: ");
                                     locationInput = Console.ReadLine().Split(',');
@@ -173,7 +174,7 @@ namespace MyRide
                                     driver.UpdateLocation(currentLocation);
                                 }
 
-                            } while (nomi != 3);
+                            } while (temp != 3);
                         }
                     }
 
@@ -217,7 +218,7 @@ namespace MyRide
                         newAdmin.SearchDriver();
                     }
                 }
-            } while (option != 5);
+            } while (option != 4);
         }
 
     }
