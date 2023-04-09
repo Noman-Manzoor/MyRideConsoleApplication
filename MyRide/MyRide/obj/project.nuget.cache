@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nmo8iPbfoShDCFI8CTblV3vUFZ40+OLpunh+H7o14yk9JTDqHflOqUJyrPn48BaDLKoCVuRWWwmr3czJj99Deg==",
+  "dgSpecHash": "FWmvNEtj64pKtE3G0gIRyye8LbEWdQjVb6+hoUEKIP2t8tqjOVQN2STHMuvQwxhY8rdnbLos529JP1kocz1mCA==",
   "success": true,
   "projectFilePath": "C:\\My data\\MyRideConsoleApplication\\MyRide\\MyRide\\MyRide.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

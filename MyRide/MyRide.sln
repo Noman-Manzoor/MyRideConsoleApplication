@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vehicle", "Vehicle\Vehicle.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger", "Passenger\Passenger.csproj", "{7973546C-9502-467F-8320-D51DD15D6947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ride", "Ride\Ride.csproj", "{321F07AE-E62C-4461-800A-870F44EBD6D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ride", "Ride\Ride.csproj", "{321F07AE-E62C-4461-800A-870F44EBD6D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

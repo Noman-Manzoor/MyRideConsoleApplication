@@ -4,6 +4,8 @@ namespace RideHailingApp.Admin
 {
     public class Admin
     {
+        string filePath = @"C:\My data\MyRideConsoleApplication\MyRide\drivers.txt";
+
         // Attributes
         static List<Driver.Driver> drivers;
         static int idCount = 200;
@@ -18,6 +20,8 @@ namespace RideHailingApp.Admin
         // Functions
         public void AddDriver()
         {
+            //string path = @"../Data/drivers.txt";
+
             Console.WriteLine("Enter details for the new driver:");
             int id = ++idCount;
             Console.Write("Name: ");
@@ -41,27 +45,50 @@ namespace RideHailingApp.Admin
             Console.Write("Vehicle License Plate: ");
             string licensePlate = Console.ReadLine();
 
-            string ph = "";
+            Console.Write("Enter Phone Number: ");
+            string ph = Console.ReadLine();
+
             bool available = true;
             Driver.Driver newDriver = new Driver.Driver(id, name, age, gender, address, ph, new Location.Location(0, 0), new Vehicle.Vehicle(type, model, licensePlate), new List<int>(new int[] { 3, 4, 5 }), available);
-            drivers.Add(newDriver);
 
+
+
+            // Create the file if it doesn't exist
+            if (!File.Exists(filePath))
+            {
+                using (StreamWriter sw = File.CreateText(filePath))
+                {
+                    sw.WriteLine($"{newDriver.ID},{newDriver.Name},{newDriver.CurrLocation.Latitude},{newDriver.CurrLocation.Longitude},{newDriver.Age},{newDriver.Gender},{newDriver.Address},{newDriver.PhoneNo},{newDriver.Vehicle.Type},{newDriver.Vehicle.Model},{newDriver.Vehicle.LicensePlate},{string.Join(",", newDriver.Ratings)}");
+                }
+            }
+            else
+            {
+                // Write more data to the file
+                using (StreamWriter sw = File.AppendText(filePath))
+                {
+                    sw.WriteLine($"{newDriver.ID},{newDriver.Name},{newDriver.CurrLocation.Latitude},{newDriver.CurrLocation.Longitude},{newDriver.Age},{newDriver.Gender},{newDriver.Address},{newDriver.PhoneNo},{newDriver.Vehicle.Type},{newDriver.Vehicle.Model},{newDriver.Vehicle.LicensePlate},{string.Join(",", newDriver.Ratings)}");
+                }
+            }
             Console.WriteLine("Driver added successfully!");
         }
+
+
 
         public void updateDriver()
         {
             Console.WriteLine("Enter driver ID to update:");
             int id = Convert.ToInt32(Console.ReadLine());
 
-            // Find driver with given ID
-            Driver.Driver driver = drivers.Find(d => d.ID == id);
+            //// Find driver with given ID
+            //Driver.Driver driver = drivers.Find(d => d.ID == id);
+            Driver.Driver driver = new Driver.Driver();
 
-            if (driver == null)
-            {
-                Console.WriteLine("Driver not found!");
-                return;
-            }
+            driver.ID = id;
+            //if (driver == null)
+            //{
+            //    Console.WriteLine("Driver not found!");
+            //    return;
+            //}
 
             Console.WriteLine("Enter fields to update (leave empty to skip):");
 
@@ -115,28 +142,56 @@ namespace RideHailingApp.Admin
                 driver.Vehicle.LicensePlate = licensePlate;
             }
 
+            // Read existing data from file
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+
+            // Find the line corresponding to the updated driver
+            string updatedLine = $"{driver.ID},{driver.Name},{driver.Age},{driver.Gender},{driver.Address},{driver.PhoneNo},{driver.Vehicle.Type},{driver.Vehicle.Model},{driver.Vehicle.LicensePlate},{string.Join(",", driver.Ratings)}";
+            int index = lines.FindIndex(line => line.StartsWith($"{driver.ID},"));
+
+            if (index == -1)
+            {
+                Console.WriteLine("Driver not found in file!");
+                return;
+            }
+
+            // Update the line in the list
+            lines[index] = updatedLine;
+
+            // Write the updated list back to the file
+            File.WriteAllLines(filePath, lines);
+
             Console.WriteLine("Driver updated successfully!");
         }
+
 
         public void RemoveDriver()
         {
             Console.Write("Enter Driver ID to remove: ");
             int id = Convert.ToInt32(Console.ReadLine());
 
-            Driver.Driver driverToRemove = drivers.Find(driver => driver.ID == id);
+            List<string> lines = File.ReadAllLines(filePath).ToList();
 
-            if (driverToRemove == null)
+            // Find the line corresponding to the updated driver
+            int index = lines.FindIndex(line => line.StartsWith($"{id},"));
+
+            if (index == -1)
             {
-                Console.WriteLine("Driver with ID {0} not found!", id);
+                Console.WriteLine("Driver not found in file!");
                 return;
             }
 
-            drivers.Remove(driverToRemove);
+            lines.RemoveAt(index);
+       
+            // Write the updated list back to the file
+            File.WriteAllLines(filePath, lines);
+
             Console.WriteLine("Driver removed successfully!");
         }
 
         public void SearchDriver()
         {
+
             Console.WriteLine("Enter the search parameters:");
 
             Console.Write("Driver ID: ");
@@ -173,33 +228,69 @@ namespace RideHailingApp.Admin
             Console.Write("Vehicle License Plate: ");
             string licensePlate = Console.ReadLine();
 
-            var filteredDrivers = drivers.Where(driver =>
-                (id == 0 || driver.ID == id) &&
-                (string.IsNullOrEmpty(name) || driver.Name == name) &&
-                (age == 0 || driver.Age == age) &&
-                (string.IsNullOrEmpty(gender) || driver.Gender == gender) &&
-                (string.IsNullOrEmpty(address) || driver.Address == address) &&
-                (string.IsNullOrEmpty(type) || driver.Vehicle.Type == type) &&
-                (string.IsNullOrEmpty(model) || driver.Vehicle.Model == model) &&
-                (string.IsNullOrEmpty(licensePlate) || driver.Vehicle.LicensePlate == licensePlate));
-
-            if (filteredDrivers.Any())
+            // Open the file and read the data using a StreamReader
+            using (StreamReader sr = new StreamReader(filePath))
             {
-                Console.WriteLine("Search Results:");
-                Console.WriteLine("-----------------------------------------------------------------------");
-                Console.WriteLine("Name\tAge\tGender\tV.Type\tV.Model\tV.License");
-                Console.WriteLine("-----------------------------------------------------------------------");
-                foreach (var driver in filteredDrivers)
+                string line;
+                var filteredDrivers = new List<Driver.Driver>();
+                while ((line = sr.ReadLine()) != null)
                 {
-                    Console.WriteLine($"{driver.Name}\t{driver.Age}\t{driver.Gender}\t{driver.Vehicle.Type}\t{driver.Vehicle.Model}\t{driver.Vehicle.LicensePlate}");
+                    // Parse the line and create a new Driver object
+                    string[] fields = line.Split(',');
+                    int driverID = Convert.ToInt32(fields[0]);
+                    string driverName = fields[1];
+                    int driverAge = Convert.ToInt32(fields[2]);
+                    string driverGender = fields[3];
+                    string driverAddress = fields[4];
+                    string vehicleType = fields[5];
+                    string vehicleModel = fields[6];
+                    string vehicleLicensePlate = fields[7];
+
+                    var driver = new Driver.Driver();
+
+                    driver.ID = driverID;
+                    driver.Name= driverName;
+                    driver.Age= driverAge;
+                    driver.Gender= driverGender;
+                    driver.Address= driverAddress;
+                    driver.Vehicle.Type= vehicleType;
+                    driver.Vehicle.Model= vehicleModel;
+                    driver.Vehicle.LicensePlate = vehicleLicensePlate;
+
+                    // Check if the driver matches the search criteria
+                    if ((id == 0 || driver.ID == id) &&
+                        (string.IsNullOrEmpty(name) || driver.Name == name) &&
+                        (age == 0 || driver.Age == age) &&
+                        (string.IsNullOrEmpty(gender) || driver.Gender == gender) &&
+                        (string.IsNullOrEmpty(address) || driver.Address == address) &&
+                        (string.IsNullOrEmpty(type) || driver.Vehicle.Type == type) &&
+                        (string.IsNullOrEmpty(model) || driver.Vehicle.Model == model) &&
+                        (string.IsNullOrEmpty(licensePlate) || driver.Vehicle.LicensePlate == licensePlate))
+                    {
+                        filteredDrivers.Add(driver);
+                    }
                 }
-                Console.WriteLine("-----------------------------------------------------------------------");
-            }
-            else
-            {
-                Console.WriteLine("No drivers found with the given search parameters.");
+
+                // Print the search results
+                if (filteredDrivers.Any())
+                {
+                    Console.WriteLine("Search Results:");
+                    Console.WriteLine("-----------------------------------------------------------------------");
+                    Console.WriteLine("Name\tAge\tGender\tV.Type\tV.Model\tV.License");
+                    Console.WriteLine("-----------------------------------------------------------------------");
+                    foreach (var driver in filteredDrivers)
+                    {
+                        Console.WriteLine($"{driver.Name}\t{driver.Age}\t{driver.Gender}\t{driver.Vehicle.Type}\t{driver.Vehicle.Model}\t{driver.Vehicle.LicensePlate}");
+                    }
+                    Console.WriteLine("-----------------------------------------------------------------------");
+                }
+                else
+                {
+                    Console.WriteLine("No drivers found with the given search parameters.");
+                }
             }
         }
+
 
 
 

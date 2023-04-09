@@ -7,16 +7,18 @@ using RideHailingApp.Driver;
 using RideHailingApp.Ride;
 using RideHailingApp.Passenger;
 using RideHailingApp.Vehicle;
+using System;
+using Newtonsoft.Json;
 
-//static List<Driver> drivers = new List<Driver>();
 
 namespace MyRide
 {
     class Program
     {
-        static List<Driver> drivers = new List<Driver>();
         static void Main(string[] args)
         {
+            // Read existing data from file
+            string filePath = @"C:\My data\MyRideConsoleApplication\MyRide\drivers.txt";
             int option;
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -73,7 +75,7 @@ namespace MyRide
 
                         if (confirmation.ToUpper() == "Y")
                         {
-                            newRide.passenger.BookRide();
+                            newRide.passenger.BookRide(name, phoneNo, startLatitude, startLongitude, endLatitude, endLongitude, rideType);
                             newRide.passenger.GiveRating();
                             Console.WriteLine("Happy Travel...!");
                         }
@@ -91,7 +93,6 @@ namespace MyRide
                     {
                         // Assume drivers is a list of available drivers
                         List<Driver> drivers = new List<Driver>();
-                        // Populate the drivers list with available drivers
 
                         drivers.Add(new Driver(1, "John", 30, "M", "123 Main St", "555-1234", new Location(1, 1), new Vehicle("Car", "Honda Civic", "ABC123"), new List<int> { 3, 4, 5 }, true));
                         drivers.Add(new Driver(2, "Jane", 25, "F", "456 Elm St", "555-5678", new Location(2, 2), new Vehicle("Bike", "Harley Davidson", "XYZ789"), new List<int> { 4, 5 }, true));
@@ -132,12 +133,19 @@ namespace MyRide
 
                     bool foundDriver = false;
 
-                    foreach (Driver driver in drivers)
+                   
+                    List<string> drivers = File.ReadAllLines(filePath).ToList();
+
+                    foreach(var driver in drivers )
                     {
-                        if (driver.ID == id && driver.Name.ToLower().Trim() == name.ToLower().Trim())
+                        string[] tempDriver = driver.Split(',');
+                        if(Convert.ToInt32(tempDriver[0]) == id && tempDriver[1].ToString().ToLower().Trim() == name.ToLower().Trim())
                         {
+                            //Driver driverObj = JsonConvert.DeserializeObject<Driver>(driver);
+                            Driver driver1= new Driver();
                             foundDriver = true;
-                            Console.WriteLine("Hello " + driver.Name + "!");
+
+                            Console.WriteLine("Hello " + tempDriver[1] + "!");
 
                             Console.WriteLine("Enter your current Location: ");
 
@@ -145,7 +153,7 @@ namespace MyRide
                             float x = float.Parse(locationInput[0].Trim());
                             float y = float.Parse(locationInput[1].Trim());
                             Location currentLocation = new Location(x, y);
-                            driver.UpdateLocation(currentLocation);
+                            driver1.UpdateLocation(currentLocation);
 
                             int temp;
                             do
@@ -162,7 +170,7 @@ namespace MyRide
                                     Console.WriteLine("Are you available? Enter a boolean value (True or False):");
                                     string userInput = Console.ReadLine();
                                     bool myBool = bool.Parse(userInput);
-                                    driver.UpdateAvailability(myBool);
+                                    driver1.UpdateAvailability(myBool);
                                 }
                                 else if (temp == 2)
                                 {
@@ -170,13 +178,16 @@ namespace MyRide
                                     locationInput = Console.ReadLine().Split(',');
                                     x = float.Parse(locationInput[0].Trim());
                                     y = float.Parse(locationInput[1].Trim());
-                                    currentLocation.SetLocation(x,y);
-                                    driver.UpdateLocation(currentLocation);
+                                    currentLocation.SetLocation(x, y);
+                                    driver1.UpdateLocation(currentLocation);
                                 }
 
                             } while (temp != 3);
                         }
+                       
                     }
+
+                    
 
                     if (!foundDriver)
                     {

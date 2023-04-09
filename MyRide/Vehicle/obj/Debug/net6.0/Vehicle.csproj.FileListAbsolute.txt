@@ -10,3 +10,15 @@ C:\My data\hw1\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.dll
 C:\My data\hw1\MyRide\Vehicle\obj\Debug\net6.0\refint\Vehicle.dll
 C:\My data\hw1\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.pdb
 C:\My data\hw1\MyRide\Vehicle\obj\Debug\net6.0\ref\Vehicle.dll
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\bin\Debug\net6.0\Vehicle.deps.json
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\bin\Debug\net6.0\Vehicle.dll
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\bin\Debug\net6.0\Vehicle.pdb
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.csproj.AssemblyReference.cache
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.GeneratedMSBuildEditorConfig.editorconfig
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.AssemblyInfoInputs.cache
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.AssemblyInfo.cs
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.csproj.CoreCompileInputs.cache
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.dll
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\refint\Vehicle.dll
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\Vehicle.pdb
+C:\My data\MyRideConsoleApplication\MyRide\Vehicle\obj\Debug\net6.0\ref\Vehicle.dll
